@@ -32,7 +32,7 @@ export default function EventListPage() {
         eventList.map((eventItem) => {
           return (
             <div key={eventItem.id}>
-              <p>{eventItem.title}</p>;
+              <Link to={`event/${eventItem.slug}`}>{eventItem.title}</Link>;
             </div>
           );
         })}
