@@ -11,7 +11,6 @@ export default function LoginForm() {
   const { setToken } = useContext(UserContext);
 
   function login() {
-    console.log(email, password);
     const payload = {
       email: email,
       password: password,
