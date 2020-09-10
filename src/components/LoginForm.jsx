@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
+  const history = useHistory();
   const ROOT_URL = "http://yoshi.willandskill.eu:8999/api/v1/";
   const LOGIN_URL = `${ROOT_URL}auth/api-token-auth/`;
   const [email, setEmail] = useState("");
@@ -21,7 +23,10 @@ export default function LoginForm() {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => setToken(data.token));
+      .then((data) => {
+        setToken(data.token);
+        history.push("/event-list");
+      });
   }
 
   return (
