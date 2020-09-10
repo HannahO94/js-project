@@ -10,7 +10,7 @@ export default function EventListPage() {
 
   useEffect(() => {
     fetchEventList();
-  });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function fetchEventList() {
     fetch(EVENT_LIST_URL, {
