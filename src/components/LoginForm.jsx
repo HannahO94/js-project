@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 
 export default function LoginForm() {
   const history = useHistory();
@@ -7,7 +8,7 @@ export default function LoginForm() {
   const LOGIN_URL = `${ROOT_URL}auth/api-token-auth/`;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState(null);
+  const { setToken } = useContext(UserContext);
 
   function login() {
     console.log(email, password);
