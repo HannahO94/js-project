@@ -6,10 +6,23 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState(null);
 
   function login() {
     console.log(email, password);
-    fetch(LOGIN_URL);
+    const payload = {
+      email: email,
+      password: password,
+    };
+    fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data.token));
   }
 
   return (
