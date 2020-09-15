@@ -1,24 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../contexts/UserContext";
+import EventKit from "../data/EventKit";
 
 export default function EventListPage() {
-  const ROOT_URL = "http://yoshi.willandskill.eu:8999/api/v1/";
-  const EVENT_LIST_URL = `${ROOT_URL}events/events/`;
-  const { token } = useContext(UserContext);
   const [eventList, setEventList] = useState(null);
+  const eventKit = new EventKit();
 
   useEffect(() => {
     fetchEventList();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function fetchEventList() {
-    fetch(EVENT_LIST_URL, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    eventKit
+      .fetchEventList()
       .then((res) => res.json())
       .then((data) => {
         setEventList(data.results);
